@@ -24,6 +24,9 @@
     letter-spacing: 0.6rem;
 }
 
+
+
+
 .Jokelist-title span{
     font-weight: 700;
     letter-spacing: 0px;
@@ -42,4 +45,15 @@
     width: 70%;
     overflow: scroll;
     box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  @media screen and ( max-width: 600px ) and ( min-width: 200px ) {
+    div.App{ height: initial; }
+    .Jokelist{ display: block; }
+
+    .Jokelist-sidebar { background: #9575cd; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 30%; text-align: center; box-shadow: 0 19px 38px rgba(0,0,0,.3), 0 15px 12px rgba(0,0,0,.1), inset 0 0 25px #7e57c2; width: 100%; margin-top: 20px;}
+
+    .Jokelist-jokes div { margin: 20px 0px; border-bottom: 1px dotted #ccc; padding-bottom: 25px; }
+  
+    .Jokelist-jokes { height: initial; background: #fff; align-self: center; width: 100%; overflow: initial; margin: 30px 0px; padding: 10px;box-sizing: border-box; }
   }
