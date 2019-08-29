@@ -13,8 +13,11 @@ class Jokelist extends Component {
     constructor(props){
         super(props)
         this.state = {
-            jokes: JSON.parse(window.localStorage.getItem("jokes") || "[]")
+            jokes: JSON.parse(window.localStorage.getItem("jokes") || "[]"), //each joke is an object
+            loading: false
         }
+        this.seenJokes = new Set(this.state.jokes.map( j => j.text))
+        console.log(this.seenJokes)
         this.handleClick = this.handleClick.bind(this)
     };
 
@@ -23,20 +26,32 @@ class Jokelist extends Component {
     }
 
     async getJokes(){
+        try{
         let jokes = [];
         while(jokes.length < this.props.numJokesToGet){
             let res = await axios.get("https://icanhazdadjoke.com/", { 
                 headers: { Accept: "application/json" }
             });
-            jokes.push({id: uuid(),text: res.data.joke, votes: 0})
+
+            let newJoke = res.data.joke
+            if(!this.seenJokes.has(newJoke)){
+                jokes.push({id: uuid(),text: newJoke, votes: 0})
+            }else{
+                console.log('found duplicate')
+                console.log(newJoke)
+            }
         }
 
         this.setState(st => ({
+            loading: false,
             jokes: [...st.jokes, ...jokes]
         }),
         () => window.localStorage.setItem("jokes" , JSON.stringify(this.state.jokes))
         )
         // console.log(jokes);
+    }catch(e){
+        this.setState({ loading:false })
+    }
     }
 
     handleVote(id,delta){
@@ -51,10 +66,21 @@ class Jokelist extends Component {
     }
 
     handleClick(){
-        this.getJokes()
+        this.setState({loading:true}, this.getJokes)
     }
 
     render() {
+        if(this.state.loading){
+            return(
+                <div className="Jokelist-spinner">
+                    <i className="fa-8x far fa-spin fa-laugh"></i>
+                    <h1 className="Jokelist-title">Loading...</h1>
+                </div>
+            )
+        }
+
+        let jokes = this.state.jokes.sort( (a,b) => b.votes - a.votes )
+
         return (
             <div className="Jokelist">
                 <div className="Jokelist-sidebar">
@@ -63,7 +89,7 @@ class Jokelist extends Component {
                     <button className="get-more" onClick={this.handleClick}>New Jokes</button>
                 </div>
                 <div className="Jokelist-jokes">
-                {this.state.jokes.map((j)=>(
+                {jokes.map((j)=>(
                     <Joke key={j.id} votes={j.votes} text={j.text} upvote={() => this.handleVote(j.id, 1)} downvote={() => this.handleVote(j.id, -1)} />
                 ))}
                 </div>

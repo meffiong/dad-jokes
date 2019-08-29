@@ -38,19 +38,19 @@ class Joke extends Component {
       }
       getSize() {
         if (this.props.votes >= 15) {
-          return "3";
+          return "3rem";
         } else if (this.props.votes >= 12) {
-            return "2.7";
+            return "2.7rem";
         } else if (this.props.votes >= 9) {
-            return "2.4";
+            return "2.4rem";
         } else if (this.props.votes >= 6) {
-            return "2.1";
+            return "2.1rem";
         } else if (this.props.votes >= 3) {
-            return "1.8";
+            return "1.8rem";
         } else if (this.props.votes >= 0) {
-            return "1.5";
+            return "1.5rem";
         } else {
-            return "1.2";
+            return "1.2rem";
         }
       }
 
