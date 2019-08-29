@@ -17,7 +17,6 @@ class Jokelist extends Component {
             loading: false
         }
         this.seenJokes = new Set(this.state.jokes.map( j => j.text))
-        console.log(this.seenJokes)
         this.handleClick = this.handleClick.bind(this)
     };
 
@@ -36,9 +35,6 @@ class Jokelist extends Component {
             let newJoke = res.data.joke
             if(!this.seenJokes.has(newJoke)){
                 jokes.push({id: uuid(),text: newJoke, votes: 0})
-            }else{
-                console.log('found duplicate')
-                console.log(newJoke)
             }
         }
 
