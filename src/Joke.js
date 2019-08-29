@@ -64,7 +64,7 @@ class Joke extends Component {
                     <i class="fas fa-arrow-down" onClick={this.props.downvote}></i>
                 </div>
                 <div className="Joke-text">{this.props.text}</div>
-                <div className="Joke-smiley"><i class="em em-rolling_on_the_floor_laughing"></i></div>
+                <div className="Joke-smiley"><i className={this.getEmoji()}></i></div>
             </div>
         )
     }
