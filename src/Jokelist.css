@@ -220,8 +220,43 @@
 
     .Jokelist-sidebar button { color: #FFF; text-transform: uppercase; font-size: 25px; background: #09f; border: none; margin: 50px 0px 20px; border-radius: 5px; padding: 10px; font-weight: bold; }
 
-    .Jokelist-jokes div { margin: 20px 0px; border-bottom: 1px dotted #ccc; padding-bottom: 25px; }
+    .Jokelist-jokes > div { margin: 20px 0px; padding-bottom: 95px; }
+    .Joke-buttons {
+      width: 100%;
+      position: absolute;
+      bottom: 0px;
+  }
     .Jokelist-jokes div:last-child { border-bottom: none; }
   
     .Jokelist-jokes { height: initial; background: #fff; align-self: center; width: 100%; overflow: initial; margin: 30px 0px; padding: 10px;box-sizing: border-box; }
+
+    i.fas.fa-arrow-up {
+      background: rgb(16, 121, 16);
+      color: #FFF;
+      width: 50%;
+      position: absolute;
+      left: 0px;
+      bottom: 0px;
+      height: 50px;
+      margin: 0px;text-align: center;display: flex;align-items: center;justify-content: center;
+  }
+
+  i.fas.fa-arrow-down {
+    background: rgb(172, 21, 172);
+    color: #FFF;
+    width: 50%;
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    height: 50px;
+    margin: 0px;
+    text-align: center;display: flex;align-items: center;justify-content: center;
+}
+
+span.Joke-votes {
+  z-index: 100;
+  background: #FFF;
+  margin-top: -90px;
+  display: block;
+}
   }
