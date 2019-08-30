@@ -222,7 +222,7 @@
 
     .Jokelist-jokes > div { margin: 20px 0px; padding-bottom: 95px; }
     .Joke-buttons {
-      width: 100%;
+      width: 100% !important;
       position: absolute;
       bottom: 0px;
   }
